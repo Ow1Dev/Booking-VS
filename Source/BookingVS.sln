@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiGateway", "ApiGateway\ApiGateway.csproj", "{807ACA05-3E16-4A2D-8DE5-97C1ECBF6596}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{03C2F6B7-4980-40EA-98A3-D5ABD4601C84}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Flight", "Flight", "{10D67558-9343-4F98-9173-B6F880C83AD2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flights.Api", "Services\Flight\Flights.Api\Flights.Api.csproj", "{44DB9700-2D16-4D88-8BC6-B01E1FF8C3B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{86C42363-599D-49DA-B639-2749ECC81A01}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{807ACA05-3E16-4A2D-8DE5-97C1ECBF6596}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{807ACA05-3E16-4A2D-8DE5-97C1ECBF6596}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{807ACA05-3E16-4A2D-8DE5-97C1ECBF6596}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{807ACA05-3E16-4A2D-8DE5-97C1ECBF6596}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44DB9700-2D16-4D88-8BC6-B01E1FF8C3B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44DB9700-2D16-4D88-8BC6-B01E1FF8C3B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44DB9700-2D16-4D88-8BC6-B01E1FF8C3B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44DB9700-2D16-4D88-8BC6-B01E1FF8C3B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86C42363-599D-49DA-B639-2749ECC81A01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86C42363-599D-49DA-B639-2749ECC81A01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86C42363-599D-49DA-B639-2749ECC81A01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86C42363-599D-49DA-B639-2749ECC81A01}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{10D67558-9343-4F98-9173-B6F880C83AD2} = {03C2F6B7-4980-40EA-98A3-D5ABD4601C84}
+		{44DB9700-2D16-4D88-8BC6-B01E1FF8C3B6} = {10D67558-9343-4F98-9173-B6F880C83AD2}
+	EndGlobalSection
+EndGlobal
