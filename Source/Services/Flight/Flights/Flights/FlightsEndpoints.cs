@@ -3,44 +3,38 @@ using Core.CQRS;
 using Core.ResultTypes;
 using Flights.Api.Flights.Features.CreatingFlight.V1;
 using Flights.Api.Flights.Features.GetFlightById.V1;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Routing;
 
-namespace Flights.Api.Flights;
+namespace Flights.Flights;
 
 public record CreateFlightRequest(string FlightNumber);
 
-public class FlightsEndpoints : CarterModule
+public class FlightsEndpoints(ICommandDispatcher commandDispatcher, IQueryDispatcher queryDispatcher)
+    : CarterModule("")
 {
-    private readonly ICommandDispatcher _commandDispatcher;
-    private readonly IQueryDispatcher _queryDispatcher;
-
-    public FlightsEndpoints(ICommandDispatcher commandDispatcher, IQueryDispatcher queryDispatcher)
-        : base("")
-    {
-        _commandDispatcher = commandDispatcher;
-        _queryDispatcher = queryDispatcher;
-    }
-
     public override void AddRoutes(IEndpointRouteBuilder app)
     {
         app.MapPost("/", (CreateFlightRequest req, CancellationToken ct) =>
         {
             return Result.Create(req)
-                .Map(req => new CreateFlightCommand(req.FlightNumber))
-                .Bind(command => _commandDispatcher.Dispatch<CreateFlightCommand, CreateFlightResult>(command, ct))
+                .Map(createFlightRequest => new CreateFlightCommand(createFlightRequest.FlightNumber))
+                .Bind(command => commandDispatcher.Dispatch<CreateFlightCommand, CreateFlightResult>(command, ct))
                 .Match(Results.Ok, HandleFailure);
         });
 
-        app.MapGet("/{Id}", (Guid Id, CancellationToken ct) =>
+        app.MapGet("/{id:guid}", (Guid id, CancellationToken ct) =>
         {
-            return Result.Create(new GetFlightByIdQuery(Id))
-                .Bind(command => _queryDispatcher.Dispatch<GetFlightByIdQuery, GetFlightByIdResult>(command, ct))
+            return Result.Create(new GetFlightByIdQuery(id))
+                .Bind(command => queryDispatcher.Dispatch<GetFlightByIdQuery, GetFlightByIdResult>(command, ct))
                 .Match(Results.Ok,
-                    e => { return e.Any(e => e.Code == "Flight.NotFound") ? Results.NotFound() : HandleFailure(e); });
+                    e => { return e.Any(error => error.Code == "Flight.NotFound") ? Results.NotFound() : HandleFailure(e); });
         });
     }
 
-    public static IResult HandleFailure(Error[] errors)
+    private static IResult HandleFailure(Error[] errors)
     {
         return Results.BadRequest(
             CreateProblemDetails(
@@ -54,7 +48,7 @@ public class FlightsEndpoints : CarterModule
         int status,
         Error[]? errors = null)
     {
-        return new()
+        return new ProblemDetails
         {
             Title = title,
             Type = errors[0].Code,

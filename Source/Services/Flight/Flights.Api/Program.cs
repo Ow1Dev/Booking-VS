@@ -1,14 +1,8 @@
 using Carter;
-using Core.CQRS;
-using Flights.Api.Flights.Features.CreatingFlight.V1;
+using Flights;
 
 var builder = WebApplication.CreateBuilder(args);
-
-builder.Services.AddCQRS(typeof(Program).Assembly);
-builder.Services.AddCarter();
-
+builder.Services.AddFlights();
 var app = builder.Build();
-
 app.MapCarter();
-
 app.Run();

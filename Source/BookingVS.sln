@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flights.Api", "Services\Fli
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{86C42363-599D-49DA-B639-2749ECC81A01}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flights", "Services\Flight\Flights\Flights.csproj", "{165BE922-B211-4B7A-9704-1F3663A9862A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -28,9 +30,14 @@ Global
 		{86C42363-599D-49DA-B639-2749ECC81A01}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{86C42363-599D-49DA-B639-2749ECC81A01}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{86C42363-599D-49DA-B639-2749ECC81A01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{165BE922-B211-4B7A-9704-1F3663A9862A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{165BE922-B211-4B7A-9704-1F3663A9862A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{165BE922-B211-4B7A-9704-1F3663A9862A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{165BE922-B211-4B7A-9704-1F3663A9862A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{10D67558-9343-4F98-9173-B6F880C83AD2} = {03C2F6B7-4980-40EA-98A3-D5ABD4601C84}
 		{44DB9700-2D16-4D88-8BC6-B01E1FF8C3B6} = {10D67558-9343-4F98-9173-B6F880C83AD2}
+		{165BE922-B211-4B7A-9704-1F3663A9862A} = {10D67558-9343-4F98-9173-B6F880C83AD2}
 	EndGlobalSection
 EndGlobal
