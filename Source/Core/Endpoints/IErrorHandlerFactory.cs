@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Flights.Flights.Errors;
+namespace Core.Endpoints;
 
 public interface IErrorHandlerFactory
 {

@@ -1,24 +1,21 @@
 ﻿using Carter;
 using Core.CQRS;
+using Core.Endpoints;
 using Core.ResultTypes;
+using Flights.Api.Contacts.Flights;
 using Flights.Api.Flights.Features.CreatingFlight.V1;
 using Flights.Api.Flights.Features.GetFlightById.V1;
-using Flights.Flights.Errors;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
+using Flights.Api.Routes;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Routing;
 
-namespace Flights.Flights;
-
-public record CreateFlightRequest(string FlightNumber);
+namespace Flights.Api.Flights;
 
 public class FlightsEndpoints(ICommandDispatcher commandDispatcher, IQueryDispatcher queryDispatcher)
-    : CarterModule("")
+    : ICarterModule
 {
-    public override void AddRoutes(IEndpointRouteBuilder app)
+    public void AddRoutes(IEndpointRouteBuilder app)
     {
-        app.MapPost("/",
+        app.MapPost(FlightsRoutes.CreateFlight,
             (CreateFlightRequest req, CancellationToken ct, [FromServices] IErrorHandlerFactory errorFac) =>
             {
                 return Result.Create(req)
@@ -27,7 +24,7 @@ public class FlightsEndpoints(ICommandDispatcher commandDispatcher, IQueryDispat
                     .Match(Results.Ok, errorFac.HandleFailure);
             });
 
-        app.MapGet("/{id:guid}",
+        app.MapGet(FlightsRoutes.GetFlightByIdQuery,
             ([FromRoute] Guid id, CancellationToken ct, [FromServices] IErrorHandlerFactory errorFac) =>
             {
                 return Result.Create(new GetFlightByIdQuery(id))

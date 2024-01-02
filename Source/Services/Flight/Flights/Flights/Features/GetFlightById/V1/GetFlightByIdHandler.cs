@@ -1,6 +1,6 @@
 ﻿using Core.CQRS;
 using Core.ResultTypes;
-using Flights.Api.Flights.Errors;
+using Flights.Flights.Errors;
 
 namespace Flights.Api.Flights.Features.GetFlightById.V1;
 

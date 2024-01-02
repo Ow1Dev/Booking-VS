@@ -1,8 +1,8 @@
-﻿using Core.ResultTypes;
-using Flights.Flights.Errors;
+﻿using Core.Endpoints;
+using Core.ResultTypes;
 using Microsoft.AspNetCore.Http;
 
-namespace Flights.Api.Flights.Errors;
+namespace Flights.Flights.Errors;
 
 public static class FlightError
 {

@@ -1,6 +1,5 @@
-﻿using Carter;
-using Core.CQRS;
-using Flights.Api.Flights.Errors;
+﻿using Core.CQRS;
+using Core.Endpoints;
 using Flights.Flights.Errors;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -10,12 +9,9 @@ public static class ServiceCollectionExtension
 {
     public static IServiceCollection AddFlights(this IServiceCollection services)
     {
-        services.AddScoped<IErrorHandlerFactory, DefaultErrorHandlerFactory>();
-        services.Decorate<IErrorHandlerFactory, FlightErrorFactory>();
-        
         services.AddCQRS(typeof(ServiceCollectionExtension).Assembly);
-        services.AddCarter();
-        
+        services.Decorate<IErrorHandlerFactory, FlightErrorFactory>();
+
         return services;
     }
 }
